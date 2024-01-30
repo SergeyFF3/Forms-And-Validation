@@ -5,6 +5,10 @@ export interface INavbarList {
 
 export const NavbarList: INavbarList[] = [
   {
+    path: '/',
+    text: 'Авторизация',
+  },
+  {
     path: '/reg',
     text: 'Регистрация',
   },
