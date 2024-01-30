@@ -5,13 +5,13 @@ import './FormWrapper.css';
 interface IFormWrapper {
   children: ReactNode;
   title: string;
-  boxWidth: string;
+  boxWidth?: string;
 }
 
 export const FormWrapper: FC<IFormWrapper> = ({
   children,
   title,
-  boxWidth,
+  boxWidth = '480px',
 }) => (
   <Box className="FormWrapper" width={boxWidth}>
     <Box marginBottom="8px">
