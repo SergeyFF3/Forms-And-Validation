@@ -1,19 +1,9 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  TextField,
-} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Box, Button } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { validationSchema } from './validationSchema';
-import { useState } from 'react';
 import { FormWrapper } from '../../components/FormWrapper';
+import { TextFieldPassword } from '../../components/TextFieldPassword';
+import { TextFieldDefault } from '../../components/TextFieldDefault';
 
 const initialValues = {
   email: '',
@@ -21,16 +11,6 @@ const initialValues = {
 };
 
 export const AuthPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-  };
-
   return (
     <FormWrapper title="АВТОРИЗАЦИЯ" boxWidth="480px">
       <Formik
@@ -44,55 +24,24 @@ export const AuthPage = () => {
             setSubmitting(false);
         }}
       >
-        {({ values, errors, touched, isValid, handleChange, handleBlur }) => (
+        {({ values, errors, touched, isValid }) => (
           <Form>
-            <TextField
-              label="Email"
-              name="email"
-              type="text"
-              margin="dense"
-              fullWidth
+            <TextFieldDefault
+              id="email"
+              label="Почта"
               value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={Boolean(errors.email) && touched.email}
-              helperText={errors.email && touched.email && errors.email}
+              error={(Boolean(errors.email) && touched.email) || false}
+              helper={(errors.email && touched.email && errors.email) || ''}
             />
-
-            <FormControl variant="outlined" margin="dense" fullWidth>
-              <InputLabel
-                htmlFor="password"
-                error={Boolean(errors.password) && touched.password}
-              >
-                Password
-              </InputLabel>
-              <OutlinedInput
-                label="password"
-                name="password"
-                type={showPassword ? 'text' : 'password'}
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={Boolean(errors.password) && touched.password}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <FormHelperText
-                error={Boolean(errors.password) && touched.password}
-              >
-                {errors.password && touched.password && errors.password}
-              </FormHelperText>
-            </FormControl>
-
+            <TextFieldPassword
+              id="password"
+              label="Пароль"
+              value={values.password}
+              error={(Boolean(errors.password) && touched.password) || false}
+              helper={
+                (errors.password && touched.password && errors.password) || ''
+              }
+            />
             <Box marginTop="16px">
               <Button
                 variant="contained"

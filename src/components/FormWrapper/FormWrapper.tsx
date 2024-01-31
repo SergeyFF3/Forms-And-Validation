@@ -14,7 +14,7 @@ export const FormWrapper: FC<IFormWrapper> = ({
   boxWidth = '480px',
 }) => (
   <Box className="FormWrapper" width={boxWidth}>
-    <Box marginBottom="8px">
+    <Box marginBottom="24px">
       <Typography align="center" variant="h5" color="primary">
         {title}
       </Typography>

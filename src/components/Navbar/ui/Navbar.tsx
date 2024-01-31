@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Navbar = () => (
   <AppBar position="static">
-    <Container maxWidth="xl">
+    <Container maxWidth="md">
       <Toolbar disableGutters>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {NavbarList.map((item) => (
